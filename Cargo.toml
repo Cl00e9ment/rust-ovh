@@ -15,11 +15,11 @@ repository = "https://github.com/MicroJoe/rust-ovh"
 reqwest = { version = "0.11", default-features = false, features = ["rustls-tls", "json"] }
 tokio = { version = "1", features = ["full"] }
 futures = "0.3"
-sha1 = { version = "0.6.0", features = ["std"] }
-serde = { version = "1.0", features = ["derive"] }
-serde_json = "1.0"
+sha1 = { version = "0.6", features = ["std"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
 phf = { version = "0.10", features = ["macros"] }
-configparser = "2.1.0"
+configparser = "2"
 
 [dev-dependencies]
-clap = "3.0.0-beta.4"
+clap = "3"
