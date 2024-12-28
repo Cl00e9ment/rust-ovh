@@ -4,6 +4,7 @@ use configparser::ini::Ini;
 use reqwest::{header::HeaderMap, Response};
 use serde::Serialize;
 use std::{convert::TryInto, path::Path, result, time::{SystemTime, UNIX_EPOCH}};
+use sha1_smol::Sha1;
 
 // Private data
 
@@ -153,7 +154,7 @@ impl OvhClient {
             body,
             timestamp,
         ];
-        let sha = sha1::Sha1::from(values.join("+")).hexdigest();
+        let sha = Sha1::from(values.join("+")).hexdigest();
         format!("$1${}", sha)
     }
 
