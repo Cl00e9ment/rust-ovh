@@ -57,11 +57,14 @@ impl OvhClient {
     /// ```no_run
     /// use ovh::client::OvhClient;
     ///
-    /// let app_key = "my_app_key";
-    /// let app_secret = "my_app_secret";
-    /// let consumer_key = "my_consumer_key";
+    /// #[tokio::main]
+    /// async fn main () {
+    ///     let app_key = "my_app_key";
+    ///     let app_secret = "my_app_secret";
+    ///     let consumer_key = "my_consumer_key";
     ///
-    /// let client = OvhClient::new("ovh-eu", app_key, app_secret, consumer_key).await.unwrap();
+    ///     let client = OvhClient::new("ovh-eu", app_key, app_secret, consumer_key).await.unwrap();
+    /// }
     /// ```
     pub async fn new(
         endpoint: &str,

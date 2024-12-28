@@ -9,17 +9,20 @@ keywords = ["ovh", "api"]
 categories = ["api-bindings"]
 repository = "https://github.com/MicroJoe/rust-ovh"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
-reqwest = { version = "0.11", default-features = false, features = ["rustls-tls", "json"] }
-tokio = { version = "1", features = ["full"] }
+reqwest = { version = "0.12", default-features = false, features = [
+    "charset", "http2", "macos-system-configuration", # keep default-features except for default-tls
+    "rustls-tls", # use rustls-tls instead of default-tls to not be depedent on OpenSSL at runtime
+    "json" # required to deserialize request
+]}
+tokio = "1"
 futures = "0.3"
 sha1 = { version = "0.6", features = ["std"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-phf = { version = "0.10", features = ["macros"] }
-configparser = "2"
+phf = { version = "0.11", features = ["macros"] }
+configparser = "3"
 
 [dev-dependencies]
-clap = "3"
+clap = { version = "4", features = ["derive"] }
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }

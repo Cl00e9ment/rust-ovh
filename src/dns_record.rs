@@ -121,7 +121,7 @@ impl OvhDnsRecord {
     ///
     /// #[tokio::main]
     /// async fn main() {
-    ///     let c = OvhClient::from_conf("ovh.conf").unwrap();
+    ///     let c = OvhClient::from_conf("ovh.conf").await.unwrap();
     ///     let record = OvhDnsRecord::get(&c, "example.com", 1234567)
     ///         .await
     ///         .unwrap();
@@ -149,7 +149,7 @@ impl OvhDnsRecord {
     ///
     /// #[tokio::main]
     /// async fn main() {
-    ///     let c = OvhClient::from_conf("ovh.conf").unwrap();
+    ///     let c = OvhClient::from_conf("ovh.conf").await.unwrap();
     ///     let ids = OvhDnsRecord::list_ids(&c, "example.com")
     ///         .await
     ///         .unwrap();
@@ -172,13 +172,13 @@ impl OvhDnsRecord {
     ///
     /// #[tokio::main]
     /// async fn main() {
-    ///     let c = OvhClient::from_conf("ovh.conf").unwrap();
-    ///     let records = OvhDnsRecord::list_ids_filtered(&c, "example.com", Some(DnsRecordType::TXT), Some("foo"))
+    ///     let c = OvhClient::from_conf("ovh.conf").await.unwrap();
+    ///     let ids = OvhDnsRecord::list_ids_filtered(&c, "example.com", Some(DnsRecordType::TXT), Some("foo"))
     ///         .await
     ///         .unwrap();
     ///
     ///     for id in ids {
-    ///         println!("{}", ids);
+    ///         println!("{}", id);
     ///	    }
     /// }
     /// ```
@@ -217,7 +217,7 @@ impl OvhDnsRecord {
     ///
     /// #[tokio::main]
     /// async fn main() {
-    ///     let c = OvhClient::from_conf("ovh.conf").unwrap();
+    ///     let c = OvhClient::from_conf("ovh.conf").await.unwrap();
     ///     let records = OvhDnsRecord::list(&c, "example.com")
     ///         .await
     ///         .unwrap();
@@ -243,7 +243,7 @@ impl OvhDnsRecord {
     ///
     /// #[tokio::main]
     /// async fn main() {
-    ///     let c = OvhClient::from_conf("ovh.conf").unwrap();
+    ///     let c = OvhClient::from_conf("ovh.conf").await.unwrap();
     ///     let records = OvhDnsRecord::list_filtered(&c, "example.com", Some(DnsRecordType::TXT), Some("foo"))
     ///         .await
     ///         .unwrap();
@@ -273,11 +273,11 @@ impl OvhDnsRecord {
     ///
     /// ```no_run
     /// use ovh::client::OvhClient;
-    /// use ovh::dns_record::OvhDnsRecord;
+    /// use ovh::dns_record::{DnsRecordType, OvhDnsRecord};
     ///
     /// #[tokio::main]
     /// async fn main() {
-    ///     let c = OvhClient::from_conf("ovh.conf").unwrap();
+    ///     let c = OvhClient::from_conf("ovh.conf").await.unwrap();
     ///     let record = OvhDnsRecord::create(&c, Some("www"), "example.com", DnsRecordType::A, Some(86400), "93.184.216.34", true)
     ///         .await
     ///         .unwrap();
@@ -312,7 +312,7 @@ impl OvhDnsRecord {
     ///
     /// #[tokio::main]
     /// async fn main() {
-    ///     let c = OvhClient::from_conf("ovh.conf").unwrap();
+    ///     let c = OvhClient::from_conf("ovh.conf").await.unwrap();
     ///     OvhDnsRecord::delete(&c, "example.com", 1234567, true)
     ///         .await
     ///         .unwrap();
@@ -338,7 +338,7 @@ impl OvhDnsRecord {
     ///
     /// #[tokio::main]
     /// async fn main() {
-    ///     let c = OvhClient::from_conf("ovh.conf").unwrap();
+    ///     let c = OvhClient::from_conf("ovh.conf").await.unwrap();
     ///     OvhDnsRecord::refresh_zone(&c, "example.com")
     ///         .await
     ///         .unwrap();

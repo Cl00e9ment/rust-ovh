@@ -42,7 +42,7 @@ impl OvhMailRedir {
     ///
     /// #[tokio::main]
     /// async fn main() {
-    ///     let c = OvhClient::from_conf("ovh.conf").unwrap();
+    ///     let c = OvhClient::from_conf("ovh.conf").await.unwrap();
     ///     let redirs = OvhMailRedir::list(&c, "example.com")
     ///         .await
     ///         .unwrap();
@@ -76,7 +76,7 @@ impl OvhMailRedir {
     ///
     /// #[tokio::main]
     /// async fn main() {
-    ///     let c = OvhClient::from_conf("ovh.conf").unwrap();
+    ///     let c = OvhClient::from_conf("ovh.conf").await.unwrap();
     ///     OvhMailRedir::create(&c, "example.com", "foo@example.com", "admin@example.com", false)
     ///         .await
     ///         .unwrap();
@@ -100,7 +100,7 @@ impl OvhMailRedir {
     ///
     /// #[tokio::main]
     /// async fn main() {
-    ///     let c = OvhClient::from_conf("ovh.conf").unwrap();
+    ///     let c = OvhClient::from_conf("ovh.conf").await.unwrap();
     ///     OvhMailRedir::delete(&c, "example.com", "1234567")
     ///         .await
     ///         .unwrap();

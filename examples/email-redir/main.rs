@@ -1,26 +1,26 @@
 use ovh::client::OvhClient;
 use ovh::email_redir::OvhMailRedir;
 
-use clap::Clap;
+use clap::Parser;
 
 /// A simple CLI tool to handle email redirections using OVH's REST API
-#[derive(Clap)]
+#[derive(Parser)]
 struct Opts {
     /// File containing API credentials
-    #[clap(short, long, default_value = "ovh.conf")]
+    #[arg(short, long, default_value = "ovh.conf")]
     config: String,
 
     #[clap(subcommand)]
     subcmd: SubCommand,
 }
 
-#[derive(Clap)]
+#[derive(Parser)]
 struct ListArgs {
     /// Domain to list the aliases from
     domain: String,
 }
 
-#[derive(Clap)]
+#[derive(Parser)]
 struct CreateArgs {
     /// Domain to create the alias to
     domain: String,
@@ -36,14 +36,14 @@ struct CreateArgs {
     local_copy: bool,
 }
 
-#[derive(Clap)]
+#[derive(Parser)]
 struct DeleteArgs {
     domain: String,
 
     id: String,
 }
 
-#[derive(Clap)]
+#[derive(Parser)]
 enum SubCommand {
     /// List all redirections for a given domain
     List(ListArgs),
@@ -59,7 +59,7 @@ enum SubCommand {
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let opts: Opts = Opts::parse();
 
-    let c = OvhClient::from_conf(&opts.config)?;
+    let c = OvhClient::from_conf(&opts.config).await?;
 
     match opts.subcmd {
         SubCommand::List(a) => {
